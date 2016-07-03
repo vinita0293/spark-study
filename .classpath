@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="core/src/main/java"/>
+	<classpathentry kind="src" path="core/src/main/scala"/>
+	<classpathentry kind="src" path="test_unit/src/main/java"/>
+	<classpathentry kind="src" path="test_unit/src/main/scala"/>
+	<classpathentry kind="src" path="test_integration/src/main/java"/>
+	<classpathentry kind="src" path="test_integration/src/main/scala"/>
+	<classpathentry kind="src" path="test_extra/src/main/scala"/>
+	<classpathentry kind="src" path="test_extra/src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/scala-sdk-2.10.6"/>
+	<classpathentry kind="lib" path="/usr/local/spark-1.6.1-hadoop2.6-firsttime/lib/spark-assembly-1.6.1-hadoop2.6.0.jar" sourcepath="/usr/local/spark-1.6.1-hadoop2.6-firsttime/lib/spark-assembly-1.6.1-hadoop2.6.0.jar"/>
+	<classpathentry kind="output" path="out/production/SparkStudy"/>
+</classpath>

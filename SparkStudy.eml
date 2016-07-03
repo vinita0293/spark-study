@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/SparkStudy"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/test_unit/src/main/java"/>
+		<testFolder url="file://$MODULE_DIR$/test_unit/src/main/scala"/>
+		<testFolder url="file://$MODULE_DIR$/test_integration/src/main/java"/>
+		<testFolder url="file://$MODULE_DIR$/test_integration/src/main/scala"/>
+		<testFolder url="file://$MODULE_DIR$/test_extra/src/main/java"/>
+	</contentEntry>
+	<lib name="spark-assembly-1.6.1-hadoop2.6.0.jar" scope="COMPILE">
+		<srcroot url="jar:///usr/local/spark-1.6.1-hadoop2.6-firsttime/lib/spark-assembly-1.6.1-hadoop2.6.0.jar!/"/>
+	</lib>
+</component>
