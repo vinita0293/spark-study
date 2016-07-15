@@ -1,6 +1,7 @@
 package com.gudvin.study.spark
 
 import org.apache.spark.rdd.RDD
+import org.apache.spark.storage.StorageLevel
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -21,39 +22,18 @@ object MySpark_PersisOrCache {
       .set("spark.hadoop.validateOutputSpecs", "false")
 
     val sc = new SparkContext(conf)
-    val loadedFileRDD: RDD[String] = sc.textFile("/usr/local/spark-1.6.1-hadoop2.6-firsttime/NOTICE", 5)
+    val loadedFileRDD: RDD[String] = sc.textFile("/usr/local/spark-1.6.1-hadoop2.6-firsttime/NOTICE", 5) //A
 
-   /*val transformedRDD = loadedFileRDD.map(line => {
-     (line.hashCode,line.length,line.contains("a"))
-   })
+    val loadedFileRDD1 = loadedFileRDD.map(_+"it") //B
+    loadedFileRDD1.persist(StorageLevel.DISK_ONLY_2)
 
-    val transRDD2 = transformedRDD.map(x => (x._1 + "HashCode",x._2,x._3))
-*/
+    //below three lines are same
+    loadedFileRDD1.cache()
+    loadedFileRDD1.persist()
+     loadedFileRDD1.persist(StorageLevel.MEMORY_ONLY)
 
-    val t1 = loadedFileRDD.map(_.trim).map(_.capitalize)
-    val t2 = loadedFileRDD.map(_.trim).map(_.toLowerCase())
+   val rdd1_1 = loadedFileRDD1.map(_+"_t1") //C
+   val rdd1_2 = loadedFileRDD1.map(_+"_t2") //D
 
-
-
-    //x -> driver
-
-
-    val a = t1.collect().map(x =>  t2.map(y => x+y).foreach(println))
-    // Logs
-    /*
-         INFO started
-         ERROR Failed connection refusd
-         INFO stopped
-     */
-
-    //loadedFileRDD.filter(_.)
-
-    //action
-    //Type1
-    //transformedRDD.count()
-
-    //Type2
-    //t2.saveAsTextFile("/home/vinita/Documents/FirstOutput")
-    //transformedRDD.collect()
   }
 }

@@ -1,7 +1,6 @@
 package com.gudvin.study.spark
 
 import org.apache.spark.rdd.RDD
-import org.apache.spark.storage.StorageLevel
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -24,19 +23,20 @@ object RDDOperations {
     val sc = new SparkContext(conf)
     val loadedFileRDD: RDD[String] = sc.textFile("/usr/local/spark-1.6.1-hadoop2.6-firsttime/NOTICE", 5) //A
 
-    val loadedFileRDD1 = loadedFileRDD.map(_+"it") //B
-    loadedFileRDD1.persist(StorageLevel.DISK_ONLY_2)
 
-    //below three lines are same
-    loadedFileRDD1.cache()
-    loadedFileRDD1.persist()
-     loadedFileRDD1.persist(StorageLevel.MEMORY_ONLY)
+    //count
+   loadedFileRDD.count
 
-   val rdd1_1 = loadedFileRDD1.map(_+"_t1") //C
-   val rdd1_2 = loadedFileRDD1.map(_+"_t2") //D
+    //
+    //assert(sc==loadedFileRDD.context)
+    println(sc, loadedFileRDD.context)
+
+    //first element or row of rdd
+    loadedFileRDD.first()
+
+    loadedFileRDD.mapPartitions(x => x.map(_+""))
+
+   val s=  loadedFileRDD.map(x => (x.charAt(0),x))//there are 2 col in rdd.
 
   }
 }
-
-A -> B -> c
-       -> D

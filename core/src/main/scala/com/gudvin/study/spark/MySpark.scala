@@ -14,14 +14,14 @@ object MySpark {
 
     val conf: SparkConf = new SparkConf()
       .setAppName("My First Spark Application With Jar 123")
-      .setMaster(sparkMasterUrl)
+      .setMaster("local")
       .setSparkHome(sparkHome)
       .setJars(Array("/media/vinita/Projects/study_related/Workspaces/IntellijJ/SparkStudy/" +
         "out/artifacts/SparkStudy_jar/SparkStudy.jar"))
       .set("spark.hadoop.validateOutputSpecs", "false")
 
     val sc = new SparkContext(conf)
-    val loadedFileRDD: RDD[String] = sc.textFile("/usr/local/spark-1.6.1-hadoop2.6-firsttime/NOTICE", 5)
+    val loadedFileRDD: RDD[String] = sc.textFile("/usr/local/spark-1.6.1-hadoop2.6-firsttime/NOTICE")
 
    /*val transformedRDD = loadedFileRDD.map(line => {
      (line.hashCode,line.length,line.contains("a"))
@@ -30,12 +30,18 @@ object MySpark {
     val transRDD2 = transformedRDD.map(x => (x._1 + "HashCode",x._2,x._3))
 */
 
-    val t1 = loadedFileRDD.map(_.trim).map(_.capitalize)
+    val t1 = loadedFileRDD.map(_.trim)
+    val t2 = loadedFileRDD.map(_.trim)
 
+
+    //x -> driver
+
+
+    val a = t1.collect().map(x =>  t2.map(y => x+y).foreach(println))
     // Logs
     /*
          INFO started
-         ERROR Failed connection refusd
+         ERROR Failed connection refused
          INFO stopped
      */
 
@@ -46,7 +52,7 @@ object MySpark {
     //transformedRDD.count()
 
     //Type2
-    t1.saveAsTextFile("/home/vinita/Documents/FirstOutput")
+    //t2.saveAsTextFile("/home/vinita/Documents/FirstOutput")
     //transformedRDD.collect()
   }
 }
